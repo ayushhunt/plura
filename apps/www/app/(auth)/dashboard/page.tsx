@@ -1,5 +1,6 @@
 "use client";
 import AccountSwitcher from "@/components/custom/account-switcher";
+import UserList from "@/components/custom/UserList";
 import { authClient } from "@/lib/auth-client";
 import { Session } from "@plura/auth";
 import { useEffect, useState } from "react";
@@ -25,6 +26,7 @@ export default function Dashboard() {
   return (
     <div>
       <AccountSwitcher session={multipleSessions} activeSession={session} />
+      {/* <UserList /> */}
     </div>
   );
 }

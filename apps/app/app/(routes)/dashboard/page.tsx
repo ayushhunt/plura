@@ -7,6 +7,7 @@ import { Mail } from "../mails/columns";
 import { UserRound } from "lucide-react";
 import { Chats } from "../../../components/custom/dashboard/chat-table";
 import InfoBreadCrumb from "@/components/custom/infobar/bread-crumb";
+import { fetchUserList } from "@/actions/adminactions";
 
 const mails: Mail[] = [
   {
@@ -144,7 +145,9 @@ const chats = [
   },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const response = await fetchUserList();
+  //console.log(response);
   return (
     <div className="flex flex-col h-full w-full items-start overflow-hidden px-5 md:px-2">
       <InfoBreadCrumb />

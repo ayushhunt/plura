@@ -22,7 +22,10 @@ model User {
   accounts      Account[]
   workspaces    Workspace[]
   projects      Project[]
-  feedbacks      Feedback[]
+  feedbacks     Feedback[]
+  banned        Boolean?     
+  banReason     String?
+  banExpires    DateTime?
   role          String      @default("user")
   normalizedEmail String    @unique
 
@@ -40,6 +43,7 @@ model Session {
   userAgent String?
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  impersonatedBy String?
 
   @@unique([token])
   @@map("session")

@@ -1,7 +1,7 @@
 import { betterAuth, BetterAuthOptions } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { prisma } from "@plura/db";
-import { multiSession } from "better-auth/plugins";
+import { admin, multiSession } from "better-auth/plugins";
 import { emailHarmony } from 'better-auth-harmony';
 
 const BaseDomain = process.env.NODE_ENV === "production" ? "https://api.plura.pro": "http://localhost:3001";
@@ -22,6 +22,8 @@ export const auth = betterAuth({
   secret: process.env.BETTER_AUTH_SECRET,
   plugins: [multiSession(), emailHarmony({
     allowNormalizedSignin: false,
+  }),admin({
+    adminRole:["admin","superAdmin"]
   })],
   user: {
     additionalFields:{
